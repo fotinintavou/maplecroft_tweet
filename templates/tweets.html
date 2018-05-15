@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latest Maplecroft Tweets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="tweets.css">
+
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 80%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+    <div class="tweets">
+        {% for tweets in latest_tweets_list %}
+            <div class="tweet">
+                <p>{{ tweets.contents|urlize }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Second Container -->
+<div id="map"></div>
+    <script type="text/javascript">
+        var map;
+        var tweet_var = [];
+        var latitude = [];
+        var longtitude = [];
+        var text = [];
+
+        {% for tweet in latest_tweets_list %}
+            tweet_var.push('{{ tweet }}');
+            latitude.push('{{ tweet.country_lat }}');
+            longtitude.push('{{ tweet.country_lon }}');
+            text.push('{{ tweet.contents }}')
+        {% endfor %}
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 0, lng: 0},
+                zoom: 4
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+
+            for (i = 0; i < latitude.length; i++) {
+
+                var latDouble  = parseFloat(latitude[i]);
+                var longDouble = parseFloat(longtitude[i]);
+
+                marker = new google.maps.Marker({
+                    position: {lat: latDouble, lng: longDouble},
+                    map: map
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(text[i])
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2KOJyZMzMvTfgmwH5MbcJQ4MYNh_APUU&callback=initMap"
+            async defer></script>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+    <p1><b>Created by:</b> fotini.ntavou@bristol.ac.uk</p1>
+</footer>
+
+</body>
+
+</html>
