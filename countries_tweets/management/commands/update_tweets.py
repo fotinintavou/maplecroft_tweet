@@ -4,7 +4,7 @@ from countries_tweets.import_tweets import ImportTweets
 
 
 class Command(BaseCommand):
-    help = 'Import the tweets'
+    help = 'Import Tweets'
 
     def handle(self, *args, **options):
         importer = ImportTweets()

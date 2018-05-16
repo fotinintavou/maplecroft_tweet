@@ -10,12 +10,9 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
         #map {
             height: 100%;
         }
-        /* Optional: Makes the sample page fill the window. */
         html, body {
             height: 80%;
             margin: 0;
@@ -25,6 +22,7 @@
 
 </head>
 
+<body>
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center">
     <div class="tweets">
@@ -40,16 +38,14 @@
 <div id="map"></div>
     <script type="text/javascript">
         var map;
-        var tweet_var = [];
         var latitude = [];
         var longtitude = [];
         var text = [];
 
         {% for tweet in latest_tweets_list %}
-            tweet_var.push('{{ tweet }}');
             latitude.push('{{ tweet.country_lat }}');
             longtitude.push('{{ tweet.country_lon }}');
-            text.push('{{ tweet.contents }}')
+            text.push('{{ tweet.contents }}');
         {% endfor %}
 
         function initMap() {
@@ -74,7 +70,7 @@
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        infowindow.setContent(text[i])
+                        infowindow.setContent(text[i]);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
@@ -86,7 +82,7 @@
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-    <p1><b>Created by:</b> fotini.ntavou@bristol.ac.uk</p1>
+    <p1><b>Created by:</b> ntavou.fotini@gmail.com</p1>
 </footer>
 
 </body>

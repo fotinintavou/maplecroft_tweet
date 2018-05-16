@@ -8,6 +8,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print Tweets.objects.get_latest_tweets()
         for tweet in Tweets.objects.all():
-            print "*************************"
+            print "*** Tweets ***"
             print tweet.published_at
             print tweet.contents
