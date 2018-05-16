@@ -2,10 +2,10 @@
 
 A basic application which:
 - displays the 10 latest tweets from Verisk Maplecroft
-- pinpoints the countries referenced in these tweets in a google map
-- displays the tweets if one hovers in the pinpointed countries
+- pinpoints to a google map the countries referenced in these tweets 
+- displays the tweets if one hovers over the pinpointed countries
 
-This application is based on django framework. JavaScript was also used, as well as google api and twitter api.
+This application is based on the Django framework. JavaScript was also used, as well as google api and twitter api.
 
 ## Installation
 
@@ -13,9 +13,17 @@ This application is based on django framework. JavaScript was also used, as well
 
 **Django version:** 1.11.5
 
-**Install the app:** pip install
+**Install modules :**  pip install tweepy pandas
 
-**Install modules :**  pip install tweepy, pandas
+**Install the app:** 
+
+Perform the following commands:
+
+- git clone https://github.com/fotinintavou/maplecroft_tweet.git
+- cd maplecroft_tweet/
+- python manage.py migrate
+- python manage.py runserver
+- Follow the link to the webpage
 
 ## Using the app
 
