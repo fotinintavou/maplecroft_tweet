@@ -76,7 +76,7 @@ Run the following command lines to test your app (twitter crdentials, tweets fet
 
 #### settings.py
 
-Contains twitter credentials
+Contains base dir, template dirs, twitter credentials
 
 #### urls.py
 
